@@ -6,15 +6,27 @@ import Row from 'react-bootstrap/Row';
 
 const Counter = () => {
     const initialState = 0;
-    const reducer = (state,) => {
-
+    const reducer = (state,action) => {
+        if(action.type === "INCREMENT"){
+            return state+1;
+        }
+        else if(action.type === "DECREMENT"){
+            return state-1;
+        }
     }
     const [state, dispatch] = useReducer(reducer, initialState);
-    let k = 0;
+    
+    const reduxFont=async (e)=>{
+        e.preventDefault();
+    }
     return (
         <div className='container pt-3'>
-
-            <Form>
+            <div className='mb-5'>
+                <h4><span className='fw-bold text-danger'>State Count :</span> {state}</h4>
+                <Button variant='success'className='mt-2'  size='sm'>INCREMENT</Button>
+                <Button variant='danger' className='mt-2 ms-2' size='sm'>DECREMENT</Button>
+            </div>
+            <Form onSubmit={reduxFont}>
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="formGridEmail">
                         <Form.Label>Email</Form.Label>
