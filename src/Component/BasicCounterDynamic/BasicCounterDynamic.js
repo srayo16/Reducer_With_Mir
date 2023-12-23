@@ -28,7 +28,7 @@ const BasicCounterDynamic = () => {
     return (
         <div className='container pt-3'>
             <h4>Dynamic</h4>
-        <div className='mb-5'>
+        <div className='mb-3'>
            <h4><span className='fw-bold text-danger'>State Count :</span> {state}</h4>
            <Button variant='success'className='mt-2'  size='sm' onClick={()=> funcForDis({ type: "INCREMENT", payload:{in: true}})}>INCREMENT</Button>
            <Button variant='danger' className='mt-2 ms-2' size='sm' onClick={()=>funcForDis({type: "DECREMENT", payload: {in: false}})}>DECREMENT</Button>
