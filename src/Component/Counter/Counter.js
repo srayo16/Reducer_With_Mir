@@ -29,6 +29,12 @@ const reducer =(state , action)=>{
             [action?.payload?.name]: action?.payload?.value
         }
     }
+    else if(action?.type=== "TOGGLE"){
+        return {
+            ...state,
+            terms: !state.terms,
+        }
+    }
 }
     const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -85,7 +91,7 @@ const reducer =(state , action)=>{
                 </Row>
 
                 <Form.Group className="mb-3" id="formGridCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" name='terms' onChange={(e)=> dispatch({type: "INPUT", payload: {name: e.target.name, value: e.target.value}})}/>
+                    <Form.Check type="checkbox" label="Check me out" name='terms' onClick={()=> dispatch({type: "TOGGLE"})}/>
                 </Form.Group>
 
                 <Button variant="primary" type="submit">
@@ -97,7 +103,7 @@ const reducer =(state , action)=>{
                 {
                     Object.keys(state).map((data,index)=>(
                         <li key={index}>
-                          <strong>{capitalizeFirstLetter(data)}:</strong> {state[data]}
+                          <strong>{capitalizeFirstLetter(data)}:</strong> {(typeof state[data])=="boolean" ? JSON.stringify(state[data]): state[data]}
                         </li>
                       ))
                 }
